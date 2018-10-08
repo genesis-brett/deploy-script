@@ -11,9 +11,11 @@
 #                                                                        #
 #       KRUG_DEPLOY_CONFIG                                               #
 #                                                                        #
-# Command: bash continuous-deploy.sh [scripts_for_environment_variables] #
+# Command: bash continuous-deploy.sh [environment_id]                    #
 #                                                                        #
-#          e.g. bash continuous-deploy.sh cd-krug-config.sh              #
+#          e.g.                                                          #
+#              integration: bash continuous-deploy.sh int                #
+#              staging: bash continuous-deploy.sh staging                #
 #                                                                        #
 # Install md5sum : brew install md5sha1sum (Ignore this currently)       #
 ##########################################################################
