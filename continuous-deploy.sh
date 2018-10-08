@@ -253,14 +253,6 @@ while [ true ]; do
 	do
 		printf " Start to deploy for ${service_id}(${SERVICE_HOSTS[$service_id]}) \n"
 
-		# copy shell script for deployment to remote server
-		# It would be better to use git
-		printf " Copying scripts to remote server... \n"
-		scp -r ${DEPLOY_SCRIPTS} ${LOGIN_ACCOUNT}@${SERVICE_HOSTS[$service_id]}:~/${REMOTE_WORKING_DIR}/${start_time}
-		if [ $? != 0 ]; then
-			break # error occurred
-		fi
-
 		if [[ -z ${IGNORE_DEREGISTER_PROCESS[$service_name]} ]]; then
 			# deregister
 			deregister_service $service_name $service_id
@@ -297,7 +289,10 @@ while [ true ]; do
 		deploy_command="${deploy_command} export KRUG_DEPLOY_CONFIG=${KRUG_DEPLOY_CONFIG};"
 		deploy_command="${deploy_command} export DOCKER_CONTAINER_HOST=${SERVICE_HOSTS[$service_id]};"
 		deploy_command="${deploy_command} export OLD_DOCKER_VERSION=${OLD_DOCKER_VERSION};"
-		deploy_command="${deploy_command} cd ${REMOTE_WORKING_DIR}/${start_time};"
+		deploy_command="${deploy_command} mkdir -p ${REMOTE_WORKING_DIR};"
+		deploy_command="${deploy_command} cd ${REMOTE_WORKING_DIR};"
+		deploy_command="${deploy_command} git clone https://github.com/genesis-harveycg/deploy-scripts.git ${start_time};"
+		deploy_command="${deploy_command} cd ${start_time};"
 		deploy_command="${deploy_command} mkdir logs;"
 		if [[ -z $OLD_DOCKER_VERSION ]]; then
 			deploy_command="${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} -p ${DOCKER_LOGIN_PASSWORD};"
