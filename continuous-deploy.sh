@@ -7,7 +7,7 @@
 #       DOCKER_LOGIN_USER                                                #
 #       DOCKER_LOGIN_PASSWORD                                            #
 #                                                                        #
-# Specify environemnt variables for deployment configuration:            #
+# Specify environemnt variables for deployment configuration(optional):  #
 #                                                                        #
 #       KRUG_DEPLOY_CONFIG                                               #
 #                                                                        #
