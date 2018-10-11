@@ -290,16 +290,18 @@ while [ true ]; do
 		deploy_command="${deploy_command} export DOCKER_LOGIN_PASSWORD=${DOCKER_LOGIN_PASSWORD};"
 		deploy_command="${deploy_command} export KRUG_DEPLOY_CONFIG=${KRUG_DEPLOY_CONFIG};"
 		deploy_command="${deploy_command} export DOCKER_CONTAINER_HOST=${SERVICE_HOSTS[$service_id]};"
-		deploy_command="${deploy_command} export OLD_DOCKER_VERSION=${OLD_DOCKER_VERSION};"
+		deploy_command="${deploy_command} export DOCKER_VERSION=${DOCKER_VERSION};"
 		deploy_command="${deploy_command} mkdir -p ${REMOTE_WORKING_DIR};"
 		deploy_command="${deploy_command} cd ${REMOTE_WORKING_DIR};"
 		deploy_command="${deploy_command} git clone https://github.com/genesis-harveycg/deploy-scripts.git ${start_time};"
 		deploy_command="${deploy_command} cd ${start_time};"
 		deploy_command="${deploy_command} mkdir logs;"
-		if [[ -z $OLD_DOCKER_VERSION ]]; then
+		if [[ -z $DOCKER_VERSION ]]; then
 			deploy_command="${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} -p ${DOCKER_LOGIN_PASSWORD};"
-		else
+		elif [[ $DOCKER_VERSION == "1.9.1" ]]; then
 			deploy_command="${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} -p ${DOCKER_LOGIN_PASSWORD} -e ${DOCKER_LOGIN_USER}@gen-game.com;"
+		elif [[ $DOCKER_VERSION == "17.12.0-ce" ]]; then
+			deploy_command="echo ${DOCKER_LOGIN_PASSWORD} | ${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} --password-stdin ;"
 		fi
 		deploy_command="${deploy_command} ./deploy-krug.sh ${SERVICE_DEPLOY_ID[$service_name]} ${docker_image_version} 2>&1 | tee -a logs/output.log;"
 		deploy_command="${deploy_command} docker logout;"

@@ -55,4 +55,4 @@ export LOGIN_ACCOUNT="tpedev"
 
 export KRUG_DEPLOY_CONFIG="deploy-krug-config-staging.sh"
 
-export OLD_DOCKER_VERSION='1.9.1'
+export DOCKER_VERSION='1.9.1'
