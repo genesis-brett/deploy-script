@@ -77,6 +77,11 @@ CONSUL_SERVICE_NAME['paris-service']='paris'
 declare -A SERVICE_SHUTDOWN_DELAY_TIME
 SERVICE_SHUTDOWN_DELAY_TIME['wallet-service']=10
 
+# Define pre-handler before service is shutting down
+declare -A SERVICE_SHUTDOWN_PRE_HANDLER
+SERVICE_SHUTDOWN_PRE_HANDLER['kafka-consumer']='stop_kafka_consumers'
+
+
 # Authentication data for calling API of gateway
 export API_TIMESTAMP="20180912"
 export API_TOKEN="6e1f3aaedb2cc3dcad7984bccdb488ad"

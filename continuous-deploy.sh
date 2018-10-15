@@ -45,6 +45,9 @@ fi
 
 source $KRUG_DEPLOY_CONFIG
 
+# include special resources of each services
+source kafka-consumer.sh
+
 
 #################################################################################
 # Functions。                                                                   #
@@ -277,6 +280,14 @@ while [ true ]; do
 			if [[ ! -z ${SERVICE_SHUTDOWN_DELAY_TIME[$service_name]} ]]; then
 				printf " Sleep for %s seconds before deploy ... \n" "${SERVICE_SHUTDOWN_DELAY_TIME[$service_name]}"
 				sleep ${SERVICE_SHUTDOWN_DELAY_TIME[$service_name]}
+			fi
+		fi
+
+		# execute process before shutdown service
+		if [[ ! -z ${SERVICE_SHUTDOWN_PRE_HANDLER[$service_name]} ]]; then
+			eval "${SERVICE_SHUTDOWN_PRE_HANDLER[$service_name]} ${service_name} ${service_id}"
+			if [[ $? != 0 ]]; then
+				break # there is something wrong
 			fi
 		fi
 
