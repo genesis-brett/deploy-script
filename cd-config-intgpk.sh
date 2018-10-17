@@ -32,8 +32,8 @@ SERVICE_HOSTS['jackpot-service-2']='10.200.18.131'
 SERVICE_HOSTS['bonus-service-1']='10.200.18.150'
 SERVICE_HOSTS['bonus-service-2']='10.200.18.151'
 
-SERVICE_HOSTS['genplus-service-1']=''
-SERVICE_HOSTS['genplus-service-2']=''
+SERVICE_HOSTS['genplus-service-1']='10.200.18.124'
+SERVICE_HOSTS['genplus-service-2']='10.200.18.140'
 
 SERVICE_HOSTS['history-service-1']='10.200.18.155'
 SERVICE_HOSTS['history-service-2']='10.200.18.156'
