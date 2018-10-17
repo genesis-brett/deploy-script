@@ -11,6 +11,8 @@ declare -A SERVICE_JAVA_HEAP_SIZES
 SERVICE_JAVA_HEAP_SIZES['jackpot']='1536M'
 SERVICE_JAVA_HEAP_SIZES['report']='1024M'
 SERVICE_JAVA_HEAP_SIZES['wallet']='1536M'
+SERVICE_JAVA_HEAP_SIZES['gateway']='2048M'
+SERVICE_JAVA_HEAP_SIZES['kafka-consumer']='1024M'
 
 # active profile for spring application, uses DEFAULT_SPRING_PROFILES_ACTIVE if not specified. This will be set as parameter for docker images. e.g. --env SPRING_PROFILES_ACTIVE=dev
 declare -A SPRING_ACTIVE_PROFILES
