@@ -18,7 +18,7 @@ declare -A SPRING_ACTIVE_PROFILES
 
 # Extra environment parameter for command 'docker run'. This will be set as parameter for docker images. e.g. -e "API_ACCESS=ANYTHINGGOOD"
 declare -A DOCKER_ENV_VARIABLES
-DOCKER_ENV_VARIABLES['gateway']='-e "API_ACCESS=ANYTHINGGOOD"'
+DOCKER_ENV_VARIABLES['gateway']='-e "API_ACCESS=ANYTHINGGOOD" -v /home/tpedev/override_config/krug-gateway:/data/override_config'
 DOCKER_ENV_VARIABLES['jackpot']='-p 9010:9010 -v /home/tpedev/override_config/krug-jackpot:/data/override_config'
 DOCKER_ENV_VARIABLES['partner']='-v /home/tpedev/override_config/krug-partner:/data/override_config'
 DOCKER_ENV_VARIABLES['report']='-v /home/tpedev/override_config/krug-report:/data/override_config'
