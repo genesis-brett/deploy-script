@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source cd-config-base.sh
+
 #export DEFAULT_SPRING_PROFILES_ACTIVE=dev
 # export DEFAUL_LOG_MAPPING=/tmp/logs:/logs
 export DEFAULT_SPRING_PROFILES_ACTIVE=colostg
