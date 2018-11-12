@@ -121,11 +121,17 @@ fi
 docker_cmd="$docker_cmd -d"
 
 ## add spring profile variable as docker environment variable
-spring_active_profile=${SPRING_ACTIVE_PROFILES[$service_id]}
-if [[ -z $spring_active_profile ]]
-	then spring_active_profile=$DEFAULT_SPRING_PROFILES_ACTIVE
+active_profile=${SPRING_ACTIVE_PROFILES[$service_id]}
+if [[ -z $active_profile ]]
+	then active_profile=$DEFAULT_SPRING_PROFILES_ACTIVE
 fi
-docker_cmd="$docker_cmd --env SPRING_PROFILES_ACTIVE=$spring_active_profile"
+
+## specify parameter name of profile attribute
+if [[ "${SERVICE_ARCH[$service_id]}" == "vertx" ]]
+        then docker_cmd="$docker_cmd -e PROFILE=$active_profile"
+else
+	docker_cmd="$docker_cmd --env SPRING_PROFILES_ACTIVE=$active_profile"
+fi
 
 ## add java heap size variable as docker environment variable
 java_heap_size=${SERVICE_JAVA_HEAP_SIZES[$service_id]}

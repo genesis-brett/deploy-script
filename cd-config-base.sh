@@ -81,6 +81,10 @@ SERVICE_SHUTDOWN_DELAY_TIME['wallet-service']=10
 declare -A SERVICE_SHUTDOWN_PRE_HANDLER
 SERVICE_SHUTDOWN_PRE_HANDLER['kafka-consumer']='stop_kafka_consumers'
 
+# Define architecture of services, default is spring
+declare -A SERVICE_ARCH
+SERVICE_ARCH['wallet-service']='vertx'
+SERVICE_ARCH['paris-service']='vertx'
 
 # Authentication data for calling API of gateway
 export API_TIMESTAMP="20180912"
