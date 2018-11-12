@@ -127,7 +127,7 @@ if [[ -z $active_profile ]]
 fi
 
 ## specify parameter name of profile attribute
-if [[ ${SERVICE_ARCH["${service_id}-service"]} == "vertx" ]]
+if [[ $SERVICE_ARCH == "vertx" ]]
         then docker_cmd="$docker_cmd -e PROFILE=$active_profile"
 else
 	docker_cmd="$docker_cmd --env SPRING_PROFILES_ACTIVE=$active_profile"

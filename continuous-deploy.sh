@@ -302,6 +302,7 @@ while [ true ]; do
 		deploy_command="${deploy_command} export KRUG_DEPLOY_CONFIG=${KRUG_DEPLOY_CONFIG};"
 		deploy_command="${deploy_command} export DOCKER_CONTAINER_HOST=${SERVICE_HOSTS[$service_id]};"
 		deploy_command="${deploy_command} export DOCKER_VERSION=${DOCKER_VERSION};"
+                deploy_command="${deploy_command} export SERVICE_ARCH=${SERVICE_ARCH[${service_name}]};"
 		deploy_command="${deploy_command} mkdir -p ${REMOTE_WORKING_DIR};"
 		deploy_command="${deploy_command} cd ${REMOTE_WORKING_DIR};"
 		deploy_command="${deploy_command} git clone https://github.com/genesis-harveycg/deploy-scripts.git ${start_time};"
