@@ -17,7 +17,7 @@ declare -A SPRING_ACTIVE_PROFILES
 # Extra environment parameter for command 'docker run'. This will be set as parameter for docker images. e.g. -e "API_ACCESS=ANYTHINGGOOD"
 declare -A DOCKER_ENV_VARIABLES
 DOCKER_ENV_VARIABLES['gateway']='-e "API_ACCESS=ANYTHINGGOOD"'
-DOCKER_ENV_VARIABLES['wallet']='-p 8088:8088 -p 9010:9010 -h ${DOCKER_CONTAINER_HOST} -e PROFILE=${DEFAULT_SPRING_PROFILES_ACTIVE}'
+DOCKER_ENV_VARIABLES['wallet']='-p 8088:8088 -p 9010:9010 -h ${DOCKER_CONTAINER_HOST}'
 DOCKER_ENV_VARIABLES['paris']='-v "/etc/config:/etc/config" -v "/data:/data"'
 
 # tag of docker image for services

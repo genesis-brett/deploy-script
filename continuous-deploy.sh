@@ -308,12 +308,12 @@ while [ true ]; do
 		deploy_command="${deploy_command} git clone https://github.com/genesis-harveycg/deploy-scripts.git ${start_time};"
 		deploy_command="${deploy_command} cd ${start_time};"
 		deploy_command="${deploy_command} mkdir logs;"
-		if [[ -z $DOCKER_VERSION ]]; then
-			deploy_command="${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} -p ${DOCKER_LOGIN_PASSWORD};"
-		elif [[ $DOCKER_VERSION == "1.9.1" ]]; then
+		if [[ $DOCKER_VERSION == "1.9.1" ]]; then # staging
 			deploy_command="${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} -p ${DOCKER_LOGIN_PASSWORD} -e ${DOCKER_LOGIN_USER}@gen-game.com;"
-		elif [[ $DOCKER_VERSION == "17.12.0-ce" ]]; then
+		elif [[ $DOCKER_VERSION == "17.12.0-ce" && $service_name != "wallet-service" ]]; then # dev exclude wallet-service
 			deploy_command="echo ${DOCKER_LOGIN_PASSWORD} | ${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} --password-stdin ;"
+		else
+			deploy_command="${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} -p ${DOCKER_LOGIN_PASSWORD};"
 		fi
 		deploy_command="${deploy_command} ./deploy-krug.sh ${SERVICE_DEPLOY_ID[$service_name]} ${docker_image_version} 2>&1 | tee -a logs/output.log;"
 		deploy_command="${deploy_command} docker logout;"
