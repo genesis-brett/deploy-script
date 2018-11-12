@@ -307,6 +307,7 @@ while [ true ]; do
 		deploy_command="${deploy_command} git clone https://github.com/genesis-harveycg/deploy-scripts.git ${start_time};"
 		deploy_command="${deploy_command} cd ${start_time};"
 		deploy_command="${deploy_command} mkdir logs;"
+		deploy_command="${deploy_command} source cd-config-base.sh;"
 		if [[ -z $DOCKER_VERSION ]]; then
 			deploy_command="${deploy_command} sudo docker login -u ${DOCKER_LOGIN_USER} -p ${DOCKER_LOGIN_PASSWORD};"
 		elif [[ $DOCKER_VERSION == "1.9.1" ]]; then
