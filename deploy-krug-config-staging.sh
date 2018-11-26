@@ -4,12 +4,12 @@
 # export DEFAUL_LOG_MAPPING=/tmp/logs:/logs
 export DEFAULT_SPRING_PROFILES_ACTIVE=colostg
 export DEFAUL_LOG_MAPPING=/logs:/logs
-export DEFAULT_JAVA_HEAP_SIZE='512M'
+export DEFAULT_JAVA_HEAP_SIZE='384M'
 
 # java heap size for services, uses DEFAULT_JAVA_HEAP_SIZE if not specified. This will be set as parameter for docker images. e.g. -e "JAVA_HEAP_SIZE=512M"
 declare -A SERVICE_JAVA_HEAP_SIZES
-SERVICE_JAVA_HEAP_SIZES['jackpot']='768M'
-SERVICE_JAVA_HEAP_SIZES['wallet']='1024M'
+SERVICE_JAVA_HEAP_SIZES['history']='512M'
+SERVICE_JAVA_HEAP_SIZES['wallet']='512M'
 SERVICE_JAVA_HEAP_SIZES['paris']='256M'
 
 # active profile for spring application, uses DEFAULT_SPRING_PROFILES_ACTIVE if not specified. This will be set as parameter for docker images. e.g. --env SPRING_PROFILES_ACTIVE=dev
