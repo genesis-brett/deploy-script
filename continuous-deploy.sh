@@ -47,6 +47,7 @@ source $KRUG_DEPLOY_CONFIG
 
 # include special resources of each services
 source kafka-consumer.sh
+source genplus-consumer.sh
 
 
 #################################################################################

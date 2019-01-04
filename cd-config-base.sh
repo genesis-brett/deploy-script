@@ -102,6 +102,7 @@ SERVICE_SHUTDOWN_DELAY_TIME['wallet-service']=10
 # Define pre-handler before service is shutting down
 declare -A SERVICE_SHUTDOWN_PRE_HANDLER
 SERVICE_SHUTDOWN_PRE_HANDLER['kafka-consumer']='stop_kafka_consumers'
+SERVICE_SHUTDOWN_PRE_HANDLER['genplus-service']='stop_genplus_consumers'
 
 # Define architecture of services, default is spring
 declare -A SERVICE_ARCH
