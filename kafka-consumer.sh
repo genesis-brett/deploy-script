@@ -11,7 +11,7 @@
 ##########################################################################
 
 # Defines consumer names
-export KAFKA_CONSUMERS=('SecondaryDataCrateTemplateListener' 'JackpotLogListener' 'ActionLogListener')
+export KAFKA_CONSUMERS=('SecondaryDataCrateTemplateListener' 'JackpotLogListener' 'ActionLogListener' 'GenplusTransactionLogListener')
 
 # Defines data types and the consumer which owns it
 declare -A KAFKA_CONSUMER_DATA_TYPE
@@ -20,6 +20,8 @@ KAFKA_CONSUMER_DATA_TYPE['WalletLog']='SecondaryDataCrateTemplateListener'
 KAFKA_CONSUMER_DATA_TYPE['JackpotContributionLog']='JackpotLogListener'
 KAFKA_CONSUMER_DATA_TYPE['JackpotPayoutLog']='JackpotLogListener'
 KAFKA_CONSUMER_DATA_TYPE['ActionLog']='ActionLogListener'
+KAFKA_CONSUMER_DATA_TYPE['BoosterTransaction']='GenplusTransactionLogListener'
+KAFKA_CONSUMER_DATA_TYPE['GencoinTransaction']='GenplusTransactionLogListener'
 
 # Defines data buffers for each data type
 declare -A KAFKA_CONSUMER_DATA_BUFFER
@@ -28,6 +30,8 @@ KAFKA_CONSUMER_DATA_BUFFER['WalletLog']='WalletLog'
 KAFKA_CONSUMER_DATA_BUFFER['JackpotContributionLog']='JackpotLogTopic.contribution'
 KAFKA_CONSUMER_DATA_BUFFER['JackpotPayoutLog']='JackpotLogTopic.payout'
 KAFKA_CONSUMER_DATA_BUFFER['ActionLog']='^ActionLogTopic.*$'
+KAFKA_CONSUMER_DATA_BUFFER['BoosterTransaction']='booster_transaction'
+KAFKA_CONSUMER_DATA_BUFFER['GencoinTransaction']='gencoin_transaction'
 
 #################################################################################
 # Functions。                                                                   #
