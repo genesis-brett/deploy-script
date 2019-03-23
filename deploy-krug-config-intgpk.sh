@@ -28,6 +28,7 @@ DOCKER_ENV_VARIABLES['bonus']='-v /home/tpedev/override_config/krug-bonus:/data/
 DOCKER_ENV_VARIABLES['wallet']='-p 8088:8088 -p 9010:9010 -h ${DOCKER_CONTAINER_HOST} -e "JMX_BIND_INTERFACE=eth0"'
 DOCKER_ENV_VARIABLES['account']='-v /home/tpedev/override_config/krug-account:/data/override_config'
 DOCKER_ENV_VARIABLES['genplus']='-v /home/tpedev/override_config/krug-genplus:/data/override_config'
+DOCKER_ENV_VARIABLES['session']='-v /home/tpedev/override_config/krug-session:/data/override_config'
 
 # tag of docker image for services
 # declare -A DOCKER_TAG=(
