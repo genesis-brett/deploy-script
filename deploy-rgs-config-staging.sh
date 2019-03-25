@@ -3,7 +3,7 @@
 #export DEFAULT_SPRING_PROFILES_ACTIVE=dev
 # export DEFAUL_LOG_MAPPING=/tmp/logs:/logs
 export DEFAULT_SPRING_PROFILES_ACTIVE=staging
-export DEFAULT_JAVA_HEAP_SIZE='12G'
+export DEFAULT_JAVA_HEAP_SIZE='2G'
 
 # java heap size for services, uses DEFAULT_JAVA_HEAP_SIZE if not specified. This will be set as parameter for docker images. e.g. -e "JAVA_HEAP_SIZE=512M"
 declare -A SERVICE_JAVA_HEAP_SIZES

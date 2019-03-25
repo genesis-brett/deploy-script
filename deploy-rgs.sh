@@ -95,7 +95,7 @@ then
 fi
 
 service_image="$service_name:$service_tag"
-container_name="krug-$service_id"
+container_name="$service_id"
 
 # start process
 echo "----- Handle image $service_image -----"
