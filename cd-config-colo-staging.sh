@@ -50,9 +50,15 @@ SERVICE_HOSTS['kafka-consumer-2']='10.201.11.18'
 SERVICE_HOSTS['gateway-1']='10.201.11.17'
 SERVICE_HOSTS['gateway-2']='10.201.11.18'
 
+SERVICE_HOSTS['nurgs-1']='10.201.11.81'
+SERVICE_HOSTS['nurgs-2']='10.201.11.82'
+
 # account to login OS of each service instance 
 export LOGIN_ACCOUNT="tpedev"
 
 export KRUG_DEPLOY_CONFIG="deploy-krug-config-staging.sh"
+export RGS_DEPLOY_CONFIG="deploy-rgs-config-staging.sh"
 
 export DOCKER_VERSION='1.9.1'
+
+export REMOTE_SERVER_CREDENTIAL=".passwd-staging"

@@ -43,3 +43,5 @@ export LOGIN_ACCOUNT="genesis-harveycg"
 export KRUG_DEPLOY_CONFIG="deploy-krug-config-dev.sh"
 
 export DOCKER_VERSION='17.12.0-ce'
+
+export REMOTE_SERVER_CREDENTIAL=".passwd-dev"

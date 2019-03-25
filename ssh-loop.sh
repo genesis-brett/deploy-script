@@ -1,6 +1,6 @@
 #!/usr/bin/expect
 # AUTHOR: teddy.c@gen-game.com
-# VERSION: 1.10 2017-06-05 added interact mode, and bug fix for handling host authenticity prompt
+# VERSION: 1.20 2018-10-23 added password file support (~/.sshloop)
 #
 # HOW TO USE
 # sshloop [username] [cmd] [host1 [host2] ...]
@@ -11,12 +11,13 @@
 
 # ssh timeout
 set ssh_timeout 10
+# password file
+set passwdf [lindex $argv 0]
 
 
 # increase the match buffer from the default (2000)
 match_max 4000
 
-set username [lindex $argv 0]
 # set the command from the 2nd argument, trimming any leading space which can cause issues
 set cmd1 [string trimright [ string trimleft [lindex $argv 1] ] ]
 if {$cmd1 == "-interact"} {
@@ -35,15 +36,45 @@ if {$interactx == 1} {
 # account for 0-based counting
 incr num -1
 
-set timeout -1
-# get the password (once!)
-stty -echo
-send_user "enter user password: "
-expect_user -re "(.*)\n"
-# assign password to variable
-send_user "\n"
-set passwd $expect_out(1,string)
-stty echo
+
+
+
+set passwd ""
+# open the password file
+if { [ file exist $passwdf ] } {
+    if { [ file attributes $passwdf -permissions ] == "00700" } {
+        # we enforce a requirement a permission requirement for the password file
+        if { [ catch { set fp [open $passwdf r] } returnString ] } {
+            # the file is not readable, or does not exist
+        } else {
+            set file_data [read $fp]
+            close $fp
+            foreach {fullmatch submatch1} [regexp -line -inline "password:(.+)\$" $file_data] {
+                # on first match, set the password
+                set passwd "$submatch1"
+            }
+            foreach {fullmatch submatch1} [regexp -line -inline "username:(.+)\$" $file_data] {
+                # on first match, set the username
+                set username "$submatch1"
+            }
+        }  
+    } else {
+        puts "cannot use the file $passwdf because the mode is not 0700."
+    }
+}
+
+
+if { $passwd == "" } {
+    set timeout -1
+    # get the password (once!)
+    stty -echo
+    send_user "enter user password: "
+    expect_user -re "(.*)\n"
+    # assign password to variable
+    send_user "\n"
+    set passwd $expect_out(1,string)
+    stty echo
+}
 
 
 for {} {$index <= $num} {incr index} {

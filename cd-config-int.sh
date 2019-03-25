@@ -54,3 +54,5 @@ SERVICE_HOSTS['gateway-2']='10.201.11.55'
 export LOGIN_ACCOUNT="tpeint"
 
 export KRUG_DEPLOY_CONFIG="deploy-krug-config-int.sh"
+
+export REMOTE_SERVER_CREDENTIAL=".passwd-int"

@@ -7,7 +7,21 @@
 ################################################################
 
 # Unqiue name of services. The values in this list will be the keys of configuration
-export SERVICE_NAMES=('account-service' 'partner-service' 'session-service' 'jackpot-service' 'history-service' 'report-service' 'bonus-service' 'genplus-service' 'wallet-service' 'paris-service' 'kafka-consumer' 'gateway')
+export SERVICE_NAMES=(
+	'account-service'
+	'partner-service'
+	'session-service'
+	'jackpot-service'
+	'history-service'
+	'report-service'
+	'bonus-service'
+	'genplus-service'
+	'wallet-service'
+	'paris-service'
+	'kafka-consumer'
+	'gateway'
+	'nurgs'
+	'rgs')
 
 # Define docker images name for running docker constainers
 # The key is unique name of servies which are defined in SERVICE_NAMES
@@ -25,6 +39,8 @@ SERVICE_DOCKER_NAME['wallet-service']='krug-wallet' # done
 SERVICE_DOCKER_NAME['paris-service']='paris' # done
 SERVICE_DOCKER_NAME['kafka-consumer']='krug-kafka-consumer' # done
 SERVICE_DOCKER_NAME['gateway']='krug-gateway' # done
+SERVICE_DOCKER_NAME['nurgs']='nurgs' # done
+SERVICE_DOCKER_NAME['rgs']='rgs' # done
 
 # Alternative name of services for using ./deploy-krug.sh to deploy services
 declare -A SERVICE_DEPLOY_ID
@@ -40,6 +56,8 @@ SERVICE_DEPLOY_ID['wallet-service']='wallet'
 SERVICE_DEPLOY_ID['paris-service']='paris'
 SERVICE_DEPLOY_ID['kafka-consumer']='kafka-consumer'
 SERVICE_DEPLOY_ID['gateway']='gateway'
+SERVICE_DEPLOY_ID['nurgs']='nurgs'
+SERVICE_DEPLOY_ID['rgs']='rgs'
 
 # Define service port of services
 # The key is unique name of servies which are defined in SERVICE_NAMES
@@ -57,11 +75,15 @@ SERVICE_PORT['wallet-service']=8088
 SERVICE_PORT['paris-service']=8089
 SERVICE_PORT['kafka-consumer']=8085
 SERVICE_PORT['gateway']=8081
+SERVICE_PORT['nurgs']=8081
+SERVICE_PORT['rgs']=8081
 
 # List for the services which is not registered to consul and we don't have to refresh cache of gateway if it's started or shutdown
 declare -A IGNORE_DEREGISTER_PROCESS
 IGNORE_DEREGISTER_PROCESS['kafka-consumer']='kafka-consumer'
 IGNORE_DEREGISTER_PROCESS['gateway']='gateway'
+IGNORE_DEREGISTER_PROCESS['nurgs']='nurgs'
+IGNORE_DEREGISTER_PROCESS['rgs']='rgs'
 
 # Path of API to deregister service from consul
 declare -A SERVICE_DEREGISTER_PATH
@@ -85,6 +107,7 @@ SERVICE_SHUTDOWN_PRE_HANDLER['kafka-consumer']='stop_kafka_consumers'
 declare -A SERVICE_ARCH
 SERVICE_ARCH['wallet-service']='vertx'
 SERVICE_ARCH['paris-service']='vertx'
+SERVICE_ARCH['rgs']='vertx'
 
 # Authentication data for calling API of gateway
 export API_TIMESTAMP="20180912"
