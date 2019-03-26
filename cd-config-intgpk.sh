@@ -50,9 +50,12 @@ SERVICE_HOSTS['kafka-consumer-2']='10.200.18.137'
 SERVICE_HOSTS['gateway-1']='10.200.18.122'
 SERVICE_HOSTS['gateway-2']='10.200.18.123'
 
-SERVICE_HOSTS['nurgs-1']='10.200.18.110'
-SERVICE_HOSTS['nurgs-2']='10.200.18.111'
-SERVICE_HOSTS['nurgs-3']='10.200.18.128'
+#SERVICE_HOSTS['nurgs-1']='10.200.18.110'
+#SERVICE_HOSTS['nurgs-2']='10.200.18.111'
+#SERVICE_HOSTS['nurgs-3']='10.200.18.128'
+SERVICE_HOSTS['nurgs-1']='10.200.18.165'
+SERVICE_HOSTS['nurgs-2']='10.200.18.166'
+SERVICE_HOSTS['nurgs-3']='10.200.18.167'
 
 SERVICE_HOSTS['rgs-1']='10.200.18.165'
 SERVICE_HOSTS['rgs-2']='10.200.18.166'
@@ -62,6 +65,6 @@ SERVICE_HOSTS['rgs-3']='10.200.18.167'
 export LOGIN_ACCOUNT="tpedev"
 
 export KRUG_DEPLOY_CONFIG="deploy-krug-config-intgpk.sh"
-export RGS_DEPLOY_CONFIG="deploy-rgs-config-intgpk.sh"
+export NURGS_DEPLOY_CONFIG="deploy-rgs-config-intgpk.sh"
 
 export REMOTE_SERVER_CREDENTIAL=".passwd-intgpk"
