@@ -120,6 +120,10 @@ active_profile=${SPRING_ACTIVE_PROFILES[$service_id]}
 if [[ -z $active_profile ]]
 	then active_profile=$DEFAULT_SPRING_PROFILES_ACTIVE
 fi
+# Force to use specified profile from environment variable 
+if [[ ! -z $FORCE_APPLIED_PROFILE ]]
+	then active_profile=$FORCE_APPLIED_PROFILE
+fi
 
 ## specify parameter name of profile attribute
 if [[ $SERVICE_ARCH == "vertx" ]]
