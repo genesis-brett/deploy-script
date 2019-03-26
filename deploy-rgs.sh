@@ -133,7 +133,7 @@ java_heap_size=${SERVICE_JAVA_HEAP_SIZES[$service_id]}
 if [[ -z $java_heap_size ]]
 	then java_heap_size=$DEFAULT_JAVA_HEAP_SIZE
 fi
-docker_cmd="$docker_cmd -e \"JAVA_HEAP_SIZE=$java_heap_size\" -e \"JMX_BIND_INTERFACE=eth0\""
+docker_cmd="$docker_cmd -e \"HEAP_SIZE=$java_heap_size\" -e \"JMX_BIND_INTERFACE=eth0\""
 
 ## add environment variables for docker command
 docker_env_variables=${DOCKER_ENV_VARIABLES[$service_id]}
