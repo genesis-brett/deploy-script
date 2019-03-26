@@ -37,7 +37,7 @@ export DEPLOY_ENVIRONMENT="cd-config-$1.sh"
 printf "\nLoading environment properties [%s] \n" $DEPLOY_ENVIRONMENT
 source $DEPLOY_ENVIRONMENT
 
-export DEPLOY_CONFIG=$RGS_DEPLOY_CONFIG
+export DEPLOY_CONFIG=$NURGS_DEPLOY_CONFIG
 
 # check environment variables
 printf " DOCKER_LOGIN_USER=${DOCKER_LOGIN_USER} \n"
@@ -53,6 +53,7 @@ fi
 
 source $DEPLOY_CONFIG
 
+export FORCE_APPLIED_PROFILE=$2
 
 #################################################################################
 # Functions。                                                                   #
@@ -146,6 +147,7 @@ while [ true ]; do
 		deploy_command="${deploy_command} export DOCKER_CONTAINER_HOST=${SERVICE_HOSTS[$service_id]};"
 		deploy_command="${deploy_command} export DOCKER_VERSION=${DOCKER_VERSION};"
 		deploy_command="${deploy_command} export SERVICE_ARCH=${SERVICE_ARCH[${service_name}]};"
+		deploy_command="${deploy_command} export FORCE_APPLIED_PROFILE=${FORCE_APPLIED_PROFILE};"
 		deploy_command="${deploy_command} mkdir -p ${REMOTE_WORKING_DIR};"
 		deploy_command="${deploy_command} cd ${REMOTE_WORKING_DIR};"
 		deploy_command="${deploy_command} git clone https://github.com/genesis-harveycg/deploy-scripts.git ${start_time};"

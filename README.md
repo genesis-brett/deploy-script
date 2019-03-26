@@ -17,9 +17,16 @@ For detail workflow, see [this](https://staroad.atlassian.net/wiki/spaces/ITOPS/
 File: .passwd-[environment_id]
 
 ## Run
-Run command: `bash continuous-deploy.sh [environment_id]`
+Run command:
 
+- For krug services: `bash continuous-deploy.sh [environment_id]`
+
+	e.g.
+	- integration: `bash continuous-deploy.sh int`
+	- staging: `bash continuous-deploy.sh staging`
+
+- For NuRGS: `bash continuous-deploy-rgs.sh [environment_id] [force_applied_profile]`
+Second parameter is optional which is used to specify profile for application
 e.g.
-
-- integration: `bash continuous-deploy.sh int`
-- staging: `bash continuous-deploy.sh staging`
+    - integration: `bash continuous-deploy-rgs.sh int`
+    - staging: `bash continuous-deploy-rgs.sh staging`
