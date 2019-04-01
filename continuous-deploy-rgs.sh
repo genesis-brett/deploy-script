@@ -59,7 +59,44 @@ export FORCE_APPLIED_PROFILE=$2
 # Functions。                                                                   #
 #################################################################################
 
+# Check if the server is started or not. 0 for started, not started otherwise.
+# service_id, docker_image_id
+check_service_status() {
+	local service_id=$1
+	local docker_image_version=$2
+	local server_host=${SERVICE_HOSTS[$service_id]}
 
+	local health_url="http://${server_host}:8081/ng/health"
+
+	# check if the service is removed from cache of gateway for 10 seconds
+	printf "\n >> Refreshing ${service_id}(${server_host}): ${health_url} \n"
+	for retry_count in `seq 0 $MAX_RETRY_HEALTHY`
+	do
+		local health_result=$(curl -s -X GET -H 'Cache-Control: no-cache' $health_url)
+
+		# service_info=$(echo $test | jq -r '. | select(.version == "'${docker_image_version}'")') # the response is not well-formed, so it will be failed
+
+		#service_info_output=$(echo $service_info | tr -d '\r')
+		#printf "\n   ${service_id} on ${gateway_id}=${service_info_output} \n"
+
+		local check_pattern="\"version\": \"${docker_image_version}\""
+		if [[ $health_result == *"$check_pattern"* ]]; then
+			return 0
+		else
+			if (( $retry_count < $MAX_RETRY_REFRESH_GATEWAY )); then
+				if [[ $retry_count > 0 ]]; then
+					echo -en "\e[1A" # clear previous checking result on console output
+				fi
+				printf "    retrying ... (retry count=${retry_count})\n"
+				#echo "   retrying ... (retry count=${retry_count})"
+				sleep 1s
+			fi
+		fi
+	done
+
+	printf "\n   [ERROR] Got unexpected service status after retried for ${MAX_RETRY_REFRESH_GATEWAY} times \n\n"
+	return -1 # service cache is NOT refreshed successfully
+}
 
 #################################################################################
 # Deployment logic                                                              #
@@ -166,6 +203,12 @@ while [ true ]; do
 
 		echo $deploy_command | sed 's/DOCKER_LOGIN_USER.* /DOCKER_LOGIN_USER=*** /g' | sed 's/DOCKER_LOGIN_PASSWORD.* /DOCKER_LOGIN_PASSWORD=*** /g'
 		./ssh-loop.sh "${REMOTE_SERVER_CREDENTIAL}" "${deploy_command}" "${SERVICE_HOSTS[$service_id]}"
+
+		# check server is started or not
+		check_service_status $service_id $docker_image_version
+		if [[ $? != 0 ]]; then
+			break # there is something wrong when refreshing gateway
+		fi
 
 		printf "\n\n"
 	done

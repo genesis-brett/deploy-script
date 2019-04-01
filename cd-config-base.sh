@@ -117,6 +117,9 @@ export API_TOKEN="6e1f3aaedb2cc3dcad7984bccdb488ad"
 # Maximum retry times to check service status on each gateway
 export MAX_RETRY_REFRESH_GATEWAY=120
 
+# Maximum retry times to check service status on each NuRGS server
+export MAX_RETRY_HEALTHY=120
+
 export REMOTE_WORKING_DIR='deployment-working-base'
 export DEPLOY_SCRIPTS="/Users/harveycheng/Desktop/develope/deploy/shell-scripts"
 #export DEPLOY_SCRIPTS="/Users/harveycheng/Desktop/develope/deploy/shell-scripts/*.sh"

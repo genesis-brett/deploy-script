@@ -57,7 +57,7 @@ SERVICE_HOSTS['nurgs-2']='10.201.11.82'
 export LOGIN_ACCOUNT="tpedev"
 
 export KRUG_DEPLOY_CONFIG="deploy-krug-config-staging.sh"
-export RGS_DEPLOY_CONFIG="deploy-rgs-config-staging.sh"
+export NURGS_DEPLOY_CONFIG="deploy-rgs-config-staging.sh"
 
 export DOCKER_VERSION='1.9.1'
 
