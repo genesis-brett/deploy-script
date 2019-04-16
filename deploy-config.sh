@@ -20,6 +20,9 @@ declare -A SPRING_ACTIVE_PROFILES
 declare -A DOCKER_ENV_VARIABLES
 DOCKER_ENV_VARIABLES['gateway']='-e "API_ACCESS=ANYTHINGGOOD"'
 
+DOCKER_ENV_VARIABLES['report']='-v /etc/walletSeparation:/etc/walletSeparation'
+DOCKER_ENV_VARIABLES['history']='-v /etc/walletSeparation:/etc/walletSeparation'
+
 # tag of docker image for services
 declare -A DOCKER_TAG=(
 	['gateway']='1.2.0'
