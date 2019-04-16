@@ -19,6 +19,8 @@ declare -A DOCKER_ENV_VARIABLES
 DOCKER_ENV_VARIABLES['gateway']='-e "API_ACCESS=ANYTHINGGOOD"'
 DOCKER_ENV_VARIABLES['wallet']='-p 8088:8088 -p 9010:9010 -h ${DOCKER_CONTAINER_HOST}'
 DOCKER_ENV_VARIABLES['paris']='-v "/etc/config:/etc/config" -v "/data:/data"'
+DOCKER_ENV_VARIABLES['report']='-v /etc/walletSeparation:/etc/walletSeparation'
+DOCKER_ENV_VARIABLES['history']='-v /etc/walletSeparation:/etc/walletSeparation'
 
 # tag of docker image for services
 declare -A DOCKER_TAG=(

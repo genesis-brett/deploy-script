@@ -17,6 +17,8 @@ declare -A SPRING_ACTIVE_PROFILES
 declare -A DOCKER_ENV_VARIABLES
 DOCKER_ENV_VARIABLES['nurgs']='-e API_ACCESS=ANYTHINGGOOD -e USE_G1GC=1 -e lvl_prog=1 -v /data/logs:/data/logs'
 DOCKER_ENV_VARIABLES['rgs']='-e API_ACCESS=ANYTHINGGOOD -e USE_G1GC=1 -p 80:8081- v /var/log/m4:/var/log/m4'
+DOCKER_ENV_VARIABLES['report']='-v /etc/walletSeparation:/etc/walletSeparation'
+DOCKER_ENV_VARIABLES['history']='-v /etc/walletSeparation:/etc/walletSeparation'
 
 # tag of docker image for services
 declare -A DOCKER_TAG=(
