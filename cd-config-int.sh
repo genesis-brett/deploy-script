@@ -50,9 +50,13 @@ SERVICE_HOSTS['kafka-consumer-2']='10.201.11.55'
 SERVICE_HOSTS['gateway-1']='10.201.11.54'
 SERVICE_HOSTS['gateway-2']='10.201.11.55'
 
+SERVICE_HOSTS['nurgs-1']='10.201.11.74'
+SERVICE_HOSTS['nurgs-2']='10.201.11.75'
+
 # account to login OS of each service instance 
 export LOGIN_ACCOUNT="tpeint"
 
 export KRUG_DEPLOY_CONFIG="deploy-krug-config-int.sh"
+export NURGS_DEPLOY_CONFIG="deploy-rgs-config-int.sh"
 
 export REMOTE_SERVER_CREDENTIAL=".passwd-int"
