@@ -187,7 +187,7 @@ while [ true ]; do
 		deploy_command="${deploy_command} export FORCE_APPLIED_PROFILE=${FORCE_APPLIED_PROFILE};"
 		deploy_command="${deploy_command} mkdir -p ${REMOTE_WORKING_DIR};"
 		deploy_command="${deploy_command} cd ${REMOTE_WORKING_DIR};"
-		deploy_command="${deploy_command} git clone https://github.com/genesis-harveycg/deploy-scripts.git ${start_time};"
+		deploy_command="${deploy_command} git clone https://github.com/GenesisGaming/deploy-scripts.git ${start_time};"
 		deploy_command="${deploy_command} cd ${start_time};"
 		deploy_command="${deploy_command} mkdir logs;"
 		if [[ $DOCKER_VERSION == "1.9.1" ]]; then # staging
