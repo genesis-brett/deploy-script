@@ -307,7 +307,7 @@ while [ true ]; do
 		deploy_command="${deploy_command} export SERVICE_ARCH=${SERVICE_ARCH[${service_name}]};"
 		deploy_command="${deploy_command} mkdir -p ${REMOTE_WORKING_DIR};"
 		deploy_command="${deploy_command} cd ${REMOTE_WORKING_DIR};"
-		deploy_command="${deploy_command} git clone https://github.com/genesis-brett/deploy-scripts.git ${start_time};"
+		deploy_command="${deploy_command} git clone https://github.com/genesis-brett/deploy-script.git ${start_time};"
 		deploy_command="${deploy_command} cd ${start_time};"
 		deploy_command="${deploy_command} mkdir logs;"
 		if [[ $DOCKER_VERSION == "1.9.1" ]]; then # staging
